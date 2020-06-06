@@ -6,11 +6,8 @@ import pandas as pd
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 
+# Getting crumbs from yahoo finance
 def get_crumbs():
-    """
-    get crumb from yahoo finance
-    returns crumb
-    """
     url = 'https://finance.yahoo.com/quote'
     header = {'Connection': 'keep-alive',
               'Expires': '-1',
@@ -25,7 +22,7 @@ def get_crumbs():
     return crumb[0]
 
 # Fetch history data from yahoo
-def get_stock_data(symbol, crumbs, start=None, end=None, latest=5000, interval='1d'):
+def get_stock_data(symbol, crumbs, latest=5000, interval='1d'):
     current = datetime.now()
     period2 = int(datetime.timestamp(current))
     period1 = current - timedelta(days=latest)
